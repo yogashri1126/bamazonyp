@@ -1,0 +1,22 @@
+{
+  "name": "bamazonyp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "bamazon.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yogashri1126/bamazonyp.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yogashri1126/bamazonyp/issues"
+  },
+  "homepage": "https://github.com/yogashri1126/bamazonyp#readme",
+  "dependencies": {
+    "mysql": "^2.14.1"
+  }
+}
