@@ -77,7 +77,7 @@ function purchase() {
     ])
     .then(function(answer) {
       connection.query(
-        "INSERT INTO products SET ?",
+        "SELECT * FROM products SET ?",
         {
           //need to do a for loop to go through 
           //primary key to check the name of the product
