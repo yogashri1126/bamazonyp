@@ -18,8 +18,15 @@ var connection = mysql.createConnection({
 connection.connect(function(err) {
   if (err) throw err;
   // run the start function after the connection is made to prompt the user
-  start();
+  
+
 });
+
+connection.query("SELECT * FROM products", function(err, results) {
+if (err) throw err;
+console.log(results)})
+
+start();
 
 // function which prompts the user for what action they should take
 function start() {
@@ -73,10 +80,15 @@ function purchase() {
       connection.query(
         "INSERT INTO products SET ?",
         {
+          //need to do a for loop to go through 
+          //primary key to check the name of the product
+          //and if there are enough units
+          //if both conditions are met, SUBTRACT number of units and
+          //console log "Your ordered...successfully!" and DISPLAY table
+          //if one or more conditions are not met, then console log 
+          //"sorry, can't make this transaction!"
           item_id: answer.id,
           stock_quantity: answer.unitz,
-          // starting_bid: answer.startingBid,
-          // highest_bid: answer.startingBid
         },
         function(err) {
           if (err) throw err;
