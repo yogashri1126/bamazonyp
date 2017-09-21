@@ -71,10 +71,10 @@ function purchase() {
     .then(function(answer) {
       // when finished prompting, insert a new item into the db with that info
       connection.query(
-        "INSERT INTO auctions SET ?",
+        "INSERT INTO products SET ?",
         {
-          item_name: answer.id,
-          category: answer.input,
+          item_id: answer.id,
+          stock_quantity: answer.unitz,
           // starting_bid: answer.startingBid,
           // highest_bid: answer.startingBid
         },
