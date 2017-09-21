@@ -76,7 +76,6 @@ function purchase() {
       // }
     ])
     .then(function(answer) {
-      // when finished prompting, insert a new item into the db with that info
       connection.query(
         "INSERT INTO products SET ?",
         {
@@ -88,7 +87,7 @@ function purchase() {
           //if one or more conditions are not met, then console log 
           //"sorry, can't make this transaction!"
           item_id: answer.id,
-          stock_quantity: answer.unitz,
+          stock_quantity: answer.unitz
         },
         function(err) {
           if (err) throw err;
