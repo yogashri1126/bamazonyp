@@ -62,25 +62,16 @@ function purchase() {
                 type: "input",
                 message: "How many units?"
             }
-            // {
-            //   name: "startingBid",
-            //   type: "input",
-            //   message: "What would you like your starting bid to be?",
-            //   validate: function(value) {
-            //     if (isNaN(value) === false) {
-            //       return true;
-            //     }
-            //     return false;
-            //   }
-            // }
+           
         ])
-        .then(function(answers) {
+        .then(function(answers){qwerty(answers)});
 
-            connection.query(
-                "SELECT item_id FROM products WHERE item_id=?", 
+        function qwerty(answers){connection.query(
+                "SELECT item_id FROM products WHERE item_id = ?", 
                 answers.id, function(res, err) {
+                    console.log(answers.id)
                     console.log(res)
-                    //if (err) throw err;
+                    if (err) throw err;
                     //need to do a for loop to go through 
                     //primary key to check the name of the product
                     //and if there are enough units
@@ -102,13 +93,11 @@ function purchase() {
                         }
                     }
 
-
-
-
                 }
 
             );
-        });
+}
+
 }
 
 function update(answers) {
