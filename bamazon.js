@@ -62,13 +62,14 @@ function purchase() {
                 type: "input",
                 message: "How many units?"
             }
-           
-        ])
-        .then(function(answers){qwerty(answers)});
 
-        function qwerty(answers){connection.query(
-                "SELECT item_id FROM products WHERE item_id = ?", 
-                answers.id, function(res, err) {
+        ])
+        .then(function(answers) {
+
+            connection.query(
+                "SELECT item_id FROM products WHERE item_id = ?",
+                answers.id,
+                function(res, err) {
                     console.log(answers.id)
                     console.log(res)
                     if (err) throw err;
@@ -84,8 +85,8 @@ function purchase() {
                             console.log("Your ordered product is processed successfully!")
                             temp = res[i].stock_quantity - answer.unitz
                             console.log(temp)
-                            console.log("Price:" + res[i].price*answers.unitz)
-                            //update(answers)
+                            console.log("Price:" + res[i].price * answers.unitz)
+                            update(answers)
 
                             start();
                         } else {
@@ -96,8 +97,8 @@ function purchase() {
                 }
 
             );
-}
 
+        })
 }
 
 function update(answers) {
