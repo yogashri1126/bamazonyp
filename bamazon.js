@@ -64,15 +64,14 @@ function purchase() {
             }
 
         ])
-        .then(function(answers) {
+        .then(function(answer) {
 
             connection.query(
                 "SELECT item_id FROM products WHERE item_id = ?",
-                answers.id,
+                answer.id,
                 function(res, err) {
-                    console.log(answers.id)
-                    console.log(res)
-                    if (err) throw err;
+                    console.log(answer.id)
+                    
                     //need to do a for loop to go through 
                     //primary key to check the name of the product
                     //and if there are enough units
@@ -85,14 +84,17 @@ function purchase() {
                             console.log("Your ordered product is processed successfully!")
                             temp = res[i].stock_quantity - answer.unitz
                             console.log(temp)
-                            console.log("Price:" + res[i].price * answers.unitz)
-                            update(answers)
+                            console.log("Price:" + res[i].price * answer.unitz)
+                            update(answer)
 
                             start();
                         } else {
                             console.log("sorry, can't make this transaction!")
                         }
                     }
+
+                    console.log(res)
+                    if (err) throw err;
 
                 }
 
@@ -101,13 +103,13 @@ function purchase() {
         })
 }
 
-function update(answers) {
+function update(answer) {
 
     var query = connection.query(
         "UPDATE products SET ? WHERE ?", [{
             stock_quantity: temp
         }, {
-            item_id: answers.id
+            item_id: answer.id
         }],
         function(err, res) {
             console.log(res.affectedRows + " products updated!\n");
