@@ -75,11 +75,12 @@ function purchase() {
             // }
         ])
         .then(function(answers) {
-            connection.query(
-                "SELECT item_id FROM products WHERE stock_quantity>=?", answers.unitz,
-                function(res, err) {
 
-                    if (err) throw err;
+            connection.query(
+                "SELECT item_id FROM products WHERE item_id=?", 
+                answers.id, function(res, err) {
+                    console.log(res)
+                    //if (err) throw err;
                     //need to do a for loop to go through 
                     //primary key to check the name of the product
                     //and if there are enough units
@@ -91,7 +92,9 @@ function purchase() {
                         if (answer.id === res[i].item_id && answer.unitz <= res[i].stock_quantity) {
                             console.log("Your ordered product is processed successfully!")
                             temp = res[i].stock_quantity - answer.unitz
-                            update(answers)
+                            console.log(temp)
+                            console.log("Price:" + res[i].price*answers.unitz)
+                            //update(answers)
 
                             start();
                         } else {
